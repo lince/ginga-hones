@@ -1,0 +1,302 @@
+AC_INIT(configure.in)
+AM_INIT_AUTOMAKE(HoNeS, 1.0)
+AM_CONFIG_HEADER(honesconfig.h)
+AM_MAINTAINER_MODE
+
+###################################
+# Large files support.
+###################################
+
+AC_TYPE_SIZE_T
+AC_TYPE_OFF_T
+AC_DEFINE([_FILE_OFFSET_BITS], [64], [file offset size])
+AC_DEFINE(_LARGEFILE_SOURCE, 1, [large file support.])
+AC_DEFINE(_LARGE_FILE_SOURCE, 1, [large file support.])
+AC_DEFINE(_LARGEFILE64_SOURCE, 1, [large file support.])
+AC_DEFINE(__USE_LARGEFILE64, 1, [large file support.])
+
+##############################
+# Maximum buffer length.
+##############################
+
+AC_DEFINE(MAX_BUFFER, [4*1024*1024], [maximum internal buffer length])
+
+##############################
+# Checks for programs.
+##############################
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX([g++])
+AC_PROG_LIBTOOL
+
+CXXFLAGS="-fPIC $CXXFLAGS"
+CFLAGS="-fPIC $CFLAGS"
+
+# Bring additional directories where things might be found into our
+# search path. I don't know why autoconf doesn't do this by default
+for spfx in /usr/lib/ /usr/local/lib/ /usr/local/lib/ginga/ /usr/local/lib/ginga/iocontents; do
+if test -d ${spfx}; then
+LDFLAGS="-L${spfx} $LDFLAGS"
+fi
+done
+
+for spfx in /usr/include/ /usr/local/include/ /usr/local/include/ginga/ /usr/local/include/directfb/; do
+if test -d ${spfx}; then
+CPPFLAGS="-I${spfx} $CPPFLAGS"
+fi
+done
+
+##############################
+# Building paths
+##############################
+
+CPATH="/usr/include:/usr/local/include:/usr/local/include/directfb:/usr/local/include/ginga:$CPATH"
+LIBRARY_PATH="/lib:/usr/lib:/usr/local/lib:/usr/local/lib/ginga:/usr/local/lib/ginga/iocontents:$LIBRARY_PATH"
+LD_LIBRARY_PATH="/lib:/usr/lib:/usr/local/lib:/usr/local/lib/ginga:/usr/local/lib/ginga/iocontents:$LD_LIBRARY_PATH"
+PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+export CPATH LIBRARY_PATH LD_LIBRARY_PATH PKG_CONFIG_PAT
+
+##############################
+# Checks for header files.
+##############################
+
+AC_HEADER_STDC
+AC_CHECK_HEADERS([arpa/inet.h net/if.h sys/socket.h sys/ioctl.h time.h stdio.h dirent.h fcntl.h ctype.h])
+
+##############################
+# Dynamic libraries
+##############################
+
+HONES_LIBS=""
+
+##############################
+# Checks for LinceUtil
+##############################
+AC_CHECK_HEADERS([ginga/linceutil/LoggerUtil.h],
+  AC_CHECK_LIB([linceutil],[main],
+   [
+     LINCEUTIL_LIBS='-llinceutil'
+     AC_DEFINE(HAVE_LINCEUTIL, 1, [Define to 1 if you have LinceUtil support.])
+   ],
+   AC_ERROR([Couldn't find LinceUtil library. Please install LinceUtil.])
+  )
+)
+
+HONES_LIBS="$HONES_LIBS $LINCEUTIL_LIBS"
+
+##############################
+# Checks for DirectFB 
+##############################
+AC_CHECK_HEADERS([directfb.h],
+  AC_CHECK_LIB([directfb],[main],
+   [
+     DFB_LIBS='-ldirectfb'
+     AC_DEFINE(HAVE_DIRECTFB, 1, [Define to 1 if you have DirectFB support.])
+   ],
+   AC_ERROR([Couldn't find DirectFB library. Please install DirectFB.])
+  )
+)
+
+HONES_LIBS="$HONES_LIBS $DFB_LIBS"
+
+##############################
+# Checks for libupnp
+##############################
+AC_HAVE_LIBRARY(upnp,
+
+AC_LINK_IFELSE(
+   [AC_LANG_PROGRAM(
+      [[
+	#include <upnp/upnpconfig.h>
+      ]],
+      [[
+	#if UPNP_VERSION < ((1*100 + 8)*100 + 0)
+	#error LibUPnP 1.8.0 not found.
+	#endif
+      ]]
+   )],
+   [
+    AC_MSG_RESULT([checking for LibUPnP >= 1.8.0... yes])
+    UPNP180_LIBS='-lupnp'
+   ],
+   [
+	AC_MSG_RESULT([checking for LibUPnP >= 1.8.0... no])
+   ]
+),
+
+AC_MSG_RESULT([checking for LibUPnP... no])
+)
+
+AM_CONDITIONAL(COMPILE_UPNP180, [test x"$UPNP180_LIBS" = x""])
+
+##############################
+# Checks for libdlna
+##############################
+AC_HAVE_LIBRARY(dlna,
+
+AC_LINK_IFELSE(
+   [AC_LANG_PROGRAM(
+      [[
+	#define class _class
+    #include <dlna.h>
+    #undef class
+      ]],
+      [[
+    #if LIBDLNA_VERSION_INT < ((0<<16)+(2<<8)+3)
+	#error LibDLNA 0.2.3 not found.
+	#endif
+      ]]
+   )],
+   [
+    AC_MSG_RESULT([checking for LibDLNA >= 0.2.3... yes])
+    DLNA023_LIBS='-ldlna'
+   ],
+   [
+	AC_MSG_RESULT([checking for LibDLNA >= 0.2.3... no])
+   ]
+),
+
+AC_MSG_RESULT([checking for LibDLNA... no])
+)
+
+HONES_LIBS="$HONES_LIBS $DLNA023_LIBS"
+
+# Checking for libavformat
+
+AC_CHECK_HEADERS([libavformat/avformat.h],
+  AC_CHECK_LIB([avformat],[main],
+   [
+     AVFORMAT_LIBS='-lavformat'
+     AC_DEFINE(HAVE_AVFORMAT, 1, [Define to 1 if you have avformat support.])
+     AC_DEFINE(__STDC_CONSTANT_MACROS, 1, [avformat support.])
+     AC_DEFINE(INT64_C, 1, [avformat support.])
+   ]
+  )
+)
+
+HONES_LIBS="$HONES_LIBS $AVFORMAT_LIBS"
+
+# Checking for libavcodec
+
+AC_CHECK_HEADERS([libavcodec/avcodec.h],
+  AC_CHECK_LIB([avcodec],[main],
+   [
+     AVCODEC_LIBS='-lavcodec'
+     AC_DEFINE(HAVE_AVCODEC, 1, [Define to 1 if you have avcodec support.])
+   ]
+  )
+)
+
+HONES_LIBS="$HONES_LIBS $AVCODEC_LIBS"
+
+# HAVE_DLNA
+
+if test x"$DLNA023_LIBS" != x""; then
+  AC_DEFINE(HAVE_DLNA, 1, [Define to 1 if you have dlna support.])
+  AM_CONDITIONAL(COMPILE_DLNA023, [test x"$DLNA023_LIBS" = x""])
+else
+  if test x"$AVFORMAT_LIBS" != x"" && test x"$AVCODEC_LIBS" != x""; then
+    AC_DEFINE(HAVE_DLNA, 1, [Define to 1 if you have dlna support.])
+    AM_CONDITIONAL(COMPILE_DLNA023, [test x"$DLNA023_LIBS" = x""])
+  else
+    AM_CONDITIONAL(COMPILE_DLNA023, [test x"$DLNA023_LIBS" != x""])
+  fi
+fi
+
+########################################
+# Checks for Ginga-CC Component Manager
+########################################
+AC_CHECK_HEADERS([ginga/cm/IComponentManager.h],
+  AC_CHECK_LIB([gingacccm],[main],
+   [
+     GINGACCCM_LIBS='-lgingacccm -lgingaccsystemio -lgingaccsystemiocodemap'
+     AC_DEFINE(HAVE_GINGACCCM, 1, [Define to 1 if you have Ginga Common Core Component Manager support.])
+   ]
+  )
+)
+
+HONES_LIBS="$HONES_LIBS $GINGACCCM_LIBS"
+
+##############################
+# Checks for BlueZ.
+##############################
+AC_CHECK_HEADERS([bluetooth/bluetooth.h],
+  AC_CHECK_LIB([bluetooth],[main],
+   [
+     BLUEZ_LIBS='-lbluetooth'
+     AC_DEFINE(HAVE_BLUETOOTH, 1, [Define to 1 if you have BlueZ.])
+   ]
+  )
+)
+
+HONES_LIBS="$HONES_LIBS $BLUEZ_LIBS"
+
+##############################
+# Checks for FFMpeg-Ginga 
+##############################
+AC_CHECK_HEADERS([ffmpeg_ginga.h],
+  AC_CHECK_LIB([ffmpegginga],[main],
+   [
+     FFMPEG_GINGA_LIBS='-lffmpegginga'
+   ],
+   AC_ERROR([Couldn't find FFMpeg-Ginga library. Please install FFMpeg-Ginga.])
+  )
+)
+
+HONES_LIBS="$HONES_LIBS $FFMPEG_GINGA_LIBS"
+
+##############################
+# Dynamic libraries
+##############################
+
+AC_SUBST(HONES_LIBS)
+
+##############################
+# Checks for pthread
+##############################
+
+AC_CHECK_HEADERS([pthread.h],,[AC_MSG_ERROR(HoNeS needs POSIX thread library)])
+AC_CHECK_LIB([pthread],[main])
+
+##############################
+# Checks for Alsa.
+##############################
+AC_CHECK_HEADERS([alsa/asoundlib.h],
+  AC_CHECK_LIB([asound],[main],
+   [
+     AC_DEFINE(HAVE_ALSA_ASOUNDLIB_H, 1, [Define to 1 if you have Alsa.])
+   ]
+  )
+)
+
+##############################
+# Checks for typedefs, structures, and compiler characteristics.
+##############################
+
+AC_C_CONST
+AC_C_INLINE
+AC_STRUCT_TM
+
+##############################
+# Checks for Network functions
+##############################
+
+AC_CHECK_FUNCS([socket])
+AC_CHECK_FUNCS([inet_ntop])
+AC_CHECK_FUNCS([inet_pton])
+
+##############################
+# Checks for C++ stream.
+##############################
+
+AC_CHECK_HEADERS([sstream])
+
+##############################
+# Makefiles
+##############################
+
+AC_OUTPUT([
+Makefile
+bin/Makefile
+test/Makefile
+])

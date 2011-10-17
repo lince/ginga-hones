@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="62">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HoNeS" displayName="HoNeS" projectFiles="true">
+      <logicalFolder name="include" displayName="include" projectFiles="true">
+        <logicalFolder name="f3" displayName="capture" projectFiles="true">
+          <itemPath>include/capture/AudioCapture.h</itemPath>
+          <itemPath>include/capture/Exceptions.h</itemPath>
+          <itemPath>include/capture/ImageCapture.h</itemPath>
+          <itemPath>include/capture/OutputStream.h</itemPath>
+          <itemPath>include/capture/TVCapture.h</itemPath>
+          <itemPath>include/capture/VideoCapture.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="idservice" projectFiles="true">
+          <itemPath>include/idservice/BtDevice.h</itemPath>
+          <itemPath>include/idservice/BtDeviceController.h</itemPath>
+          <itemPath>include/idservice/BtDeviceList.h</itemPath>
+          <itemPath>include/idservice/BtDeviceListener.h</itemPath>
+          <itemPath>include/idservice/TVDeviceId.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f6" displayName="mediacenter" projectFiles="true">
+          <itemPath>include/mediacenter/TVMediaCenter.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="mediarenderer"
+                       displayName="mediarenderer"
+                       projectFiles="true">
+          <itemPath>include/mediarenderer/TVRAVTransport.h</itemPath>
+          <itemPath>include/mediarenderer/TVRConnectionManager.h</itemPath>
+          <itemPath>include/mediarenderer/TVRRenderingControl.h</itemPath>
+          <itemPath>include/mediarenderer/TVRenderer.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="mediaserver" displayName="mediaserver" projectFiles="true">
+          <itemPath>include/mediaserver/Directory.h</itemPath>
+          <itemPath>include/mediaserver/DirectoryList.h</itemPath>
+          <itemPath>include/mediaserver/File.h</itemPath>
+          <itemPath>include/mediaserver/FileList.h</itemPath>
+          <itemPath>include/mediaserver/TVMSConnectionManager.h</itemPath>
+          <itemPath>include/mediaserver/TVMSContentDirectory.h</itemPath>
+          <itemPath>include/mediaserver/TVMediaServer.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f4" displayName="recorder" projectFiles="true">
+          <itemPath>include/recorder/ScheduledItem.h</itemPath>
+          <itemPath>include/recorder/TVRecorder.h</itemPath>
+          <itemPath>include/recorder/VideoRecorder.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f5" displayName="tvcontrol" projectFiles="true">
+          <itemPath>include/tvcontrol/TVControl.h</itemPath>
+          <itemPath>include/tvcontrol/TVControlHandler.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="ui" projectFiles="true">
+          <itemPath>include/ui/Container.h</itemPath>
+          <itemPath>include/ui/Frame.h</itemPath>
+          <itemPath>include/ui/GraphicsHandler.h</itemPath>
+          <itemPath>include/ui/PlayerHandler.h</itemPath>
+          <itemPath>include/ui/SelectableTextArea.h</itemPath>
+          <itemPath>include/ui/TextArea.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="upnp" displayName="upnp" projectFiles="true">
+          <itemPath>include/upnp/UPnPAction.h</itemPath>
+          <itemPath>include/upnp/UPnPActionList.h</itemPath>
+          <itemPath>include/upnp/UPnPActionListener.h</itemPath>
+          <itemPath>include/upnp/UPnPActionRequest.h</itemPath>
+          <itemPath>include/upnp/UPnPActionResponse.h</itemPath>
+          <itemPath>include/upnp/UPnPAllowedValue.h</itemPath>
+          <itemPath>include/upnp/UPnPAllowedValueList.h</itemPath>
+          <itemPath>include/upnp/UPnPAllowedValueRange.h</itemPath>
+          <itemPath>include/upnp/UPnPArgument.h</itemPath>
+          <itemPath>include/upnp/UPnPArgumentList.h</itemPath>
+          <itemPath>include/upnp/UPnPDevice.h</itemPath>
+          <itemPath>include/upnp/UPnPDeviceController.h</itemPath>
+          <itemPath>include/upnp/UPnPDeviceList.h</itemPath>
+          <itemPath>include/upnp/UPnPDeviceListener.h</itemPath>
+          <itemPath>include/upnp/UPnPEventListener.h</itemPath>
+          <itemPath>include/upnp/UPnPHttpListener.h</itemPath>
+          <itemPath>include/upnp/UPnPHttpServer.h</itemPath>
+          <itemPath>include/upnp/UPnPIcon.h</itemPath>
+          <itemPath>include/upnp/UPnPIconList.h</itemPath>
+          <itemPath>include/upnp/UPnPQueryListener.h</itemPath>
+          <itemPath>include/upnp/UPnPQueryRequest.h</itemPath>
+          <itemPath>include/upnp/UPnPQueryResponse.h</itemPath>
+          <itemPath>include/upnp/UPnPRegistrarService.h</itemPath>
+          <itemPath>include/upnp/UPnPService.h</itemPath>
+          <itemPath>include/upnp/UPnPServiceList.h</itemPath>
+          <itemPath>include/upnp/UPnPServiceStateTable.h</itemPath>
+          <itemPath>include/upnp/UPnPStateVariable.h</itemPath>
+          <itemPath>include/upnp/UPnPStatus.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="util" displayName="util" projectFiles="true">
+          <itemPath>include/util/LoggerUtil.h</itemPath>
+          <itemPath>include/util/Utils.h</itemPath>
+          <itemPath>include/util/Vector.h</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="src" displayName="src" projectFiles="true">
+        <logicalFolder name="f3" displayName="capture" projectFiles="true">
+          <itemPath>src/capture/AudioCapture.cpp</itemPath>
+          <itemPath>src/capture/Exceptions.cpp</itemPath>
+          <itemPath>src/capture/ImageCapture.cpp</itemPath>
+          <itemPath>src/capture/TVCapture.cpp</itemPath>
+          <itemPath>src/capture/VideoCapture.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="idservice" projectFiles="true">
+          <itemPath>src/idservice/BtDevice.cpp</itemPath>
+          <itemPath>src/idservice/BtDeviceController.cpp</itemPath>
+          <itemPath>src/idservice/BtDeviceList.cpp</itemPath>
+          <itemPath>src/idservice/TVDeviceId.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f6" displayName="mediacenter" projectFiles="true">
+          <itemPath>src/mediacenter/TVMediaCenter.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="mediarenderer"
+                       displayName="mediarenderer"
+                       projectFiles="true">
+          <itemPath>src/mediarenderer/TVRAVTransport.cpp</itemPath>
+          <itemPath>src/mediarenderer/TVRConnectionManager.cpp</itemPath>
+          <itemPath>src/mediarenderer/TVRRenderingControl.cpp</itemPath>
+          <itemPath>src/mediarenderer/TVRenderer.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="mediaserver" displayName="mediaserver" projectFiles="true">
+          <itemPath>src/mediaserver/Directory.cpp</itemPath>
+          <itemPath>src/mediaserver/DirectoryList.cpp</itemPath>
+          <itemPath>src/mediaserver/File.cpp</itemPath>
+          <itemPath>src/mediaserver/FileList.cpp</itemPath>
+          <itemPath>src/mediaserver/TVMSConnectionManager.cpp</itemPath>
+          <itemPath>src/mediaserver/TVMSContentDirectory.cpp</itemPath>
+          <itemPath>src/mediaserver/TVMediaServer.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f4" displayName="recorder" projectFiles="true">
+          <itemPath>src/recorder/ScheduledItem.cpp</itemPath>
+          <itemPath>src/recorder/TVRecorder.cpp</itemPath>
+          <itemPath>src/recorder/VideoRecorder.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f5" displayName="tvcontrol" projectFiles="true">
+          <itemPath>src/tvcontrol/TVControl.cpp</itemPath>
+          <itemPath>src/tvcontrol/TVControlHandler.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="ui" projectFiles="true">
+          <itemPath>src/ui/Container.cpp</itemPath>
+          <itemPath>src/ui/Frame.cpp</itemPath>
+          <itemPath>src/ui/GraphicsHandler.cpp</itemPath>
+          <itemPath>src/ui/PlayerHandler.cpp</itemPath>
+          <itemPath>src/ui/SelectableTextArea.cpp</itemPath>
+          <itemPath>src/ui/TextArea.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="upnp" displayName="upnp" projectFiles="true">
+          <itemPath>src/upnp/UPnPAction.cpp</itemPath>
+          <itemPath>src/upnp/UPnPActionList.cpp</itemPath>
+          <itemPath>src/upnp/UPnPActionRequest.cpp</itemPath>
+          <itemPath>src/upnp/UPnPActionResponse.cpp</itemPath>
+          <itemPath>src/upnp/UPnPAllowedValue.cpp</itemPath>
+          <itemPath>src/upnp/UPnPAllowedValueList.cpp</itemPath>
+          <itemPath>src/upnp/UPnPAllowedValueRange.cpp</itemPath>
+          <itemPath>src/upnp/UPnPArgument.cpp</itemPath>
+          <itemPath>src/upnp/UPnPArgumentList.cpp</itemPath>
+          <itemPath>src/upnp/UPnPDevice.cpp</itemPath>
+          <itemPath>src/upnp/UPnPDeviceController.cpp</itemPath>
+          <itemPath>src/upnp/UPnPDeviceList.cpp</itemPath>
+          <itemPath>src/upnp/UPnPHttpServer.cpp</itemPath>
+          <itemPath>src/upnp/UPnPIcon.cpp</itemPath>
+          <itemPath>src/upnp/UPnPIconList.cpp</itemPath>
+          <itemPath>src/upnp/UPnPQueryRequest.cpp</itemPath>
+          <itemPath>src/upnp/UPnPQueryResponse.cpp</itemPath>
+          <itemPath>src/upnp/UPnPRegistrarService.cpp</itemPath>
+          <itemPath>src/upnp/UPnPService.cpp</itemPath>
+          <itemPath>src/upnp/UPnPServiceList.cpp</itemPath>
+          <itemPath>src/upnp/UPnPServiceStateTable.cpp</itemPath>
+          <itemPath>src/upnp/UPnPStateVariable.cpp</itemPath>
+          <itemPath>src/upnp/UPnPStatus.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="util" displayName="util" projectFiles="true">
+          <itemPath>src/util/LoggerUtil.cpp</itemPath>
+          <itemPath>src/util/Utils.cpp</itemPath>
+          <itemPath>src/util/Vector.cpp</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="test" displayName="test" projectFiles="true">
+        <itemPath>test/BtDeviceControllerTest.cpp</itemPath>
+        <itemPath>test/DeviceControllerTest.cpp</itemPath>
+        <itemPath>test/HelloWorld.cpp</itemPath>
+        <itemPath>test/HelloWorld.h</itemPath>
+        <itemPath>test/HelloWorldClient.cpp</itemPath>
+        <itemPath>test/HelloWorldService.cpp</itemPath>
+        <itemPath>test/HelloWorldService.h</itemPath>
+        <itemPath>test/TVMediaServerTest.cpp</itemPath>
+        <itemPath>test/TVRendererTest.cpp</itemPath>
+        <itemPath>test/UITest.cpp</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Arquivos importantes"
+                   projectFiles="false">
+      <itemPath>HoNeS-Makefile.mk</itemPath>
+      <itemPath>Makefile</itemPath>
+      <itemPath>autogen.sh</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>HoNeS-Makefile.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>make -f Makefile</buildCommand>
+          <cleanCommand>make -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <cTool>
+            <incDir>
+              <pElem>include</pElem>
+            </incDir>
+          </cTool>
+          <ccTool>
+            <incDir>
+              <pElem>.</pElem>
+              <pElem>libs/pupnp</pElem>
+              <pElem>include</pElem>
+              <pElem>include/upnp</pElem>
+              <pElem>include/util</pElem>
+              <pElem>include/ui</pElem>
+              <pElem>include/mediarenderer</pElem>
+              <pElem>include/mediaserver</pElem>
+              <pElem>include/capture</pElem>
+              <pElem>include/recorder</pElem>
+              <pElem>include/idservice</pElem>
+              <pElem>include/tvcontrol</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+    </conf>
+  </confs>
+</configurationDescriptor>
